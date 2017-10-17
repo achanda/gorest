@@ -26,7 +26,7 @@ func (a *App) Initialize(config *config.Config) {
 
 	db, err := gorm.Open(config.DB.Dialect, dbURI)
 	if err != nil {
-		log.Fatal("Could not connect database")
+		log.Fatal("Could not connect to database")
 	}
 
 	a.DB = model.DBMigrate(db)
