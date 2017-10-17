@@ -21,14 +21,11 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
           - name: USER
-            value: {{ .Values.postgresql.user | quote }}
+            value: {{ .Values.postgresql.postgresUser | quote }}
           - name: PASSWORD
-            valueFrom:
-              secretKeyRef:
-                name: {{ template "postgresql.fullname" . }}
-                key: postgres-password 
+            value: {{ .Values.postgresql.postgresPassword | quote }}
           - name: DB_NAME
-            value: {{ .Values.postgresql.db | quote }}
+            value: {{.Values.postgresql.postgresDatabase}}
           - name: HOST
             value: {{ template "postgresql.fullname" . }}
           ports:

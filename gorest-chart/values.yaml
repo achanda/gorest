@@ -17,7 +17,6 @@ ingress:
   hosts:
     - chart-example.local
 postgresql:
-  user: test
-  password: password
-  db: test
-  host: "127.0.0.1"
+  postgresUser: "test"
+  postgresPassword: "password"
+  postgresDatabase: "test"
