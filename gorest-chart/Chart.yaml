@@ -1,0 +1,4 @@
+apiVersion: v1
+description: Gorest chart
+name: gorest-chart
+version: 0.1.0
