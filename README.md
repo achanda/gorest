@@ -7,3 +7,9 @@ curl -H "Content-Type: application/json" -X POST -d '{"title": "Hello world", "t
 
 Get posts
 curl http://127.0.0.1:3000/posts
+
+Build
+GOOS=linux GOARCH=amd64 go build -o gorest .
+
+Generate image
+docker build . -t gorest
