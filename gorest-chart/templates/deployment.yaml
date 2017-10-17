@@ -23,11 +23,14 @@ spec:
           - name: USER
             value: {{ .Values.postgresql.postgresUser | quote }}
           - name: PASSWORD
-            value: {{ .Values.postgresql.postgresPassword | quote }}
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Release.Name}}-postgresql
+                key: postgres-password
           - name: DB_NAME
-            value: {{.Values.postgresql.postgresDatabase}}
+            value: {{.Values.postgresql.postgresDatabase | quote }}
           - name: HOST
-            value: {{ template "postgresql.fullname" . }}
+            value: {{ .Release.Name}}-postgresql
           ports:
             - containerPort: {{ .Values.service.internalPort }}
           livenessProbe:
