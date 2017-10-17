@@ -9,7 +9,7 @@ Get posts
 curl http://127.0.0.1:3000/posts
 
 Build
-GOOS=linux GOARCH=amd64 go build -o gorest .
+GOOS=linux GOARCH=amd64 go build -ldflags "-X github.com/achanda/gorest/version.Version=`git rev-parse HEAD`" -o gorest .
 
 Generate image
 docker build . -t gorest

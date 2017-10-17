@@ -39,6 +39,12 @@ func (a *App) setRouters() {
 	a.Post("/posts", a.CreatePost)
 	a.Get("/posts/{title}", a.GetPost)
 	a.Delete("/posts/{title}", a.DeletePost)
+
+	a.Get("/version", a.GetVersion)
+}
+
+func (a *App) GetVersion(w http.ResponseWriter, r *http.Request) {
+	handler.GetVersion(a.DB, w, r)
 }
 
 func (a *App) Get(path string, f func(w http.ResponseWriter, r *http.Request)) {
