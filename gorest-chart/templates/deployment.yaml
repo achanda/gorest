@@ -19,6 +19,18 @@ spec:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+          - name: USER
+            value: {{ .Values.postgresql.user | quote }}
+          - name: PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: {{ template "postgresql.fullname" . }}
+                key: postgres-password 
+          - name: DB_NAME
+            value: {{ .Values.postgresql.db | quote }}
+          - name: HOST
+            value: {{ template "postgresql.fullname" . }}
           ports:
             - containerPort: {{ .Values.service.internalPort }}
           livenessProbe:
